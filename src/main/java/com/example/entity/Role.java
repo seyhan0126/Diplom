@@ -6,6 +6,10 @@ import javax.persistence.*;
 @Table(name = "roles")
 public class Role {
     @Id
+    @Column(name = "role_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer role_id;
+
+    @Column(name = "name")
+    private String name;
 }

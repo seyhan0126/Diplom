@@ -6,19 +6,20 @@ import javax.persistence.*;
 @Table(name = "cars")
 public class Car {
     @Id
+    @Column(name = "car_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer car_id;
     @Column(nullable = false, unique = true, length = 45, name = "model")
     private String model;
     @Column(nullable = false, unique = true, length = 45, name = "brand")
     private String brand;
 
-    public Integer getId() {
-        return id;
+    public Integer getCar_id() {
+        return car_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCar_id(Integer car_id) {
+        this.car_id = car_id;
     }
 
     public String getModel() {

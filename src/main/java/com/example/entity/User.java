@@ -1,16 +1,18 @@
 package com.example.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
-    public Integer getId() {
-        return id;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public String getFname() {
@@ -46,14 +48,22 @@ public class User {
     }
 
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer user_id;
     @Column(nullable = false, unique = true, length = 45, name = "first_name")
     private String fname;
     @Column(nullable = false, unique = true, length = 45, name = "last_name")
     private String lname;
     @Column(nullable = false, unique = true, length = 45, name = "email")
     private String email;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
     @Column(length = 20, name = "password")
     private String password;
 
